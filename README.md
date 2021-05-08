@@ -12,11 +12,56 @@
 
 # 部署
 
-两种方式：直接部署、docker 部署，推荐后者。
+两种方式：直接部署、Docker 部署，推荐后者。
 
-## 部署方式
+## Docker 部署
 
-待补充。
+1. Please use root priv for following.
+
+```bash
+# install docker
+apt install docker.io
+apt install docker-compose
+
+# deploy redis, if you need to use cache function
+docker pull redis
+docker run -itd --name redis -p 127.0.0.1:6379:6379 redis --requirepass "123456"
+
+# deploy mongo
+mkdir mongo-auth && cd mongo-auth
+cat << EOF > initdb.js
+db.createUser(
+    {
+        user: "admin",
+        pwd: "123456",
+        roles:[
+            {
+                role: "readWrite",
+                db:   "sharpblog"
+            }
+        ]
+    }
+);
+EOF
+
+cat <<EOF > docker-compose.yml
+mongo:
+  image: mongo:latest
+  container_name: mongo
+  environment:
+      MONGO_INITDB_DATABASE: sharpblog
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+  volumes:
+      - ./initdb.js:/docker-entrypoint-initdb.d/initdb.js:ro
+  ports:
+    - "9898:27017"
+  command: mongod --auth
+EOF
+docker-compose up -d
+```
+
+2. 待补充
 
 # 功能截图
 
