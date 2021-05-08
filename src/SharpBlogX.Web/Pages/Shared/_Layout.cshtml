@@ -1,0 +1,41 @@
+﻿@using SharpBlogX.Web
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="SharpBlog,REInject,个人博客">
+    <meta name="description" content="REInject的个人博客,用于记录生活积累笔记。">
+    <title>@ViewData["Title"]@Common.BlogTitle⭐⭐⭐</title>
+    <base href="/" />
+    <environment include="Development">
+        <link rel="icon" href="~/images/avatar.png" />
+        <link rel="stylesheet" href="~/css/app.css" asp-append-version="true" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="icon" href="https://cdn.jsdelivr.net/gh/cnsimo/pic_bed@master/ZPy86P.png" />
+        <link rel="stylesheet" href="https://static.sharpblog.cn/css/app.css">
+    </environment>
+    @await RenderSectionAsync("styles", required: false)
+</head>
+<body>
+    <div class="wrapper">
+        @{ await Html.RenderPartialAsync("_Header"); }
+        <div class="main">
+            <div class="container">
+                @RenderBody()
+            </div>
+        </div>
+        @{ await Html.RenderPartialAsync("_Footer"); }
+    </div>
+    <environment include="Development">
+    <script src="~/live2d/L2Dwidget.min.js"></script>
+    <script src="~/js/app.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdn.jsdelivr.net/gh/imuncle/live2d@master/js/live2d.js"></script>
+        <script src="https://static.sharpblog.cn/js/app.js"></script>
+    </environment>
+    @await RenderSectionAsync("scripts", required: false)
+</body>
+</html>

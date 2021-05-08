@@ -1,0 +1,74 @@
+﻿---
+blog:
+  staticUrl: 'https://static.sharpblog.cn'
+  apiUrl: 'https://api.sharpblog.cn'
+  webUrl: 'https://sharpblog.cn'
+  adminUrl: 'https://admin.sharpblog.cn'
+
+swagger:
+  version: 'v4.0.0'
+  name: 'SharpBlog'
+  title: 'SharpBlog api'
+  description: 'Powered by .NET 5 on Linux'
+  routePrefix: ''
+  documentTitle: 'Api - SharpBlog'
+
+storage:
+  mongodb: 'mongodb://admin:123456@localhost:27011/sharpblogx'
+  redisIsEnabled: true
+  redis: '127.0.0.1:6379,defaultDatabase=1,password=Kkk@d123'
+
+cors:
+  policyName: 'sharpblog-policy'
+  origins: 'https://api.sharpblog.cn:44380,https://admin.sharpblog.cn:44382,https://localhost:44381,https://localhost:44382'
+
+jwt:
+  issuer: 'sharpblog_blog'
+  audience: 'sharpblog_blog api'
+  signingKey: 'H4sIAAAAAAAAA3N0cnZxdXP38PTy9vH18w8I9AkOCQ0Lj4iMAgDB4fXPGgAAAA=='
+
+worker:
+  isEnabled: true
+  cron: '0 0 0/1 * * ? *'
+
+tencentCloud:
+  secretId: 'AKIDlSrzZj0DXZKo0zslPnvmMfWdjYC6CG3d'
+  secretKey: ''
+
+authorize:
+  github:
+    clientId: 'e31df3ad90fb05adc29c'
+    clientSecret: ''
+    redirectUrl: 'https://admin.sharpblog.cn/oauth/github'
+    scope: 'user'
+  gitee:
+    clientId: '2aa9116886160b7a7d5d87f043df4f3331d15ac1b1f3b57844d87e0b7b62e9c2'
+    clientSecret: ''
+    redirectUrl: 'https://admin.sharpblog.cn/oauth/gitee'
+    scope: 'user_info emails'
+  alipay:
+    appId: '2021002125624107'
+    redirectUrl: 'https://admin.sharpblog.cn/oauth/alipay'
+    scope: 'auth_user'
+    privateKey: ''
+    publicKey: ''
+  dingtalk:
+    appId: 'dingoakqr9viaxcysinlzh'
+    appSecret: ''
+    redirectUrl: 'https://admin.sharpblog.cn/oauth/dingtalk'
+    scope: 'snsapi_login'
+  microsoft:
+    clientId: 'b4c12337-8504-4da9-b85a-4961b7771426'
+    clientSecret: ''
+    redirectUrl: 'https://admin.sharpblog.cn/oauth/microsoft'
+    scope: 'user.read'
+  weibo:
+    clientId: '3725213942'
+    clientSecret: ''
+    redirectUrl: 'https://admin.sharpblog.cn/oauth/weibo'
+    scope: 'all'
+  qq:
+    clientId: '101935194'
+    clientSecret: ''
+    redirectUrl: 'https://admin.sharpblog.cn/oauth/qq'
+    scope: 'get_user_info'

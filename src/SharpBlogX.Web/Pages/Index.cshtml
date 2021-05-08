@@ -1,0 +1,31 @@
+﻿@page "/"
+@using SharpBlogX.Web
+<div class="intro">
+    <div class="avatar">
+        <a href="javascript:;"><img src="https://cdn.jsdelivr.net/gh/cnsimo/pic_bed@master/ZPy86P.png" /></a>
+    </div>
+    <div class="nickname">@Common.BlogTitle</div>
+    <div class="description">
+        <p>
+            生命不息，奋斗不止
+            <br>Cease to struggle and you cease to live
+        </p>
+    </div>
+    <div class="links">
+        <a class="link-item" title="Blog" href="/posts">
+            <i class="iconfont iconread"></i>
+        </a>
+        <a target="_blank" class="link-item" title="API" href="@Common.BlogApiUrl">
+            <i class="iconfont iconapi"></i>
+        </a>
+        <a target="_blank" class="link-item" title="Admin" href="@Common.BlogAdminUrl">
+            <i class="iconfont iconcode"></i>
+        </a>
+        <a target="_blank" class="link-item" title="Github" href="@Common.GithubUrl">
+            <i class="iconfont icongithub"></i>
+        </a>
+        <a class="link-item telegram" title="Telegram" href="@Common.TelegramUrl">
+            <i class="iconfont icontelegram"></i>
+        </a>
+    </div>
+</div>

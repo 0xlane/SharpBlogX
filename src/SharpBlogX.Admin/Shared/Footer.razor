@@ -1,0 +1,15 @@
+﻿<FooterView Copyright="@($"{DateTime.Now.Year} @Common.BlogTitle⭐⭐⭐")" Links="Links" />
+
+@code
+{
+    LinkItem[] Links { get; set; } =
+    {
+        new LinkItem
+        {
+            Key = "github",
+            Title = (RenderFragment)(@<Icon Type="github" />),
+            Href = "https://github.com/cnsimo/sharpblogx",
+            BlankTarget = true,
+        }
+    };
+}

@@ -1,0 +1,7 @@
+﻿@page "/saying"
+@model SharpBlogX.Web.Pages.Apps.SayingModel
+@{
+    ViewData["Title"] = "一句话 - ";
+}
+<div class="soul"><h1>@Model.Saying</h1></div>
+<div class="soul"><button class="soul-btn" onclick="javascript: location.reload();">再来一句</button></div>
