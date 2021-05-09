@@ -1,9 +1,11 @@
+FROM node:16-buster-slim AS node_base
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
+COPY --from=node_base . .
 WORKDIR /src
 COPY ["src/SharpBlogX.Admin/SharpBlogX.Admin.csproj", "src/SharpBlogX.Admin/"]
 COPY ["src/SharpBlogX.Response/SharpBlogX.Response.csproj", "src/SharpBlogX.Response/"]
