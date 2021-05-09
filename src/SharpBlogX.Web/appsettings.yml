@@ -1,0 +1,10 @@
+---
+urls: 'http://0.0.0.0:44381'
+blog:
+  title: 'SharpBlog'
+  staticUrl: 'http://localhost:44381'
+  apiUrl: 'http://localhost:44380'
+  webUrl: 'http://localhost:44381'
+  adminUrl: 'http://localhost:44382'
+  githubUrl: 'https://github.com/cnsimo'
+  telegramUrl: 'https://t.me/reinj3ct'

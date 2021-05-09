@@ -1,10 +1,10 @@
 ﻿@page "/"
-@using SharpBlogX.Web
+@inject Microsoft.Extensions.Options.IOptions<SharpBlogX.Options.BlogOptions> BlogOptions
 <div class="intro">
     <div class="avatar">
         <a href="javascript:;"><img src="https://cdn.jsdelivr.net/gh/cnsimo/pic_bed@master/ZPy86P.png" /></a>
     </div>
-    <div class="nickname">@Common.BlogTitle</div>
+    <div class="nickname">@BlogOptions.Value.Title</div>
     <div class="description">
         <p>
             生命不息，奋斗不止
@@ -18,16 +18,16 @@
         <a class="link-item" title="Documents" href="https://www.yuque.com/gotoreinject/sharpblog/dcylg9">
             <i class="iconfont iconnote"></i>
         </a>
-        <a target="_blank" class="link-item" title="API" href="@Common.BlogApiUrl">
+        <a target="_blank" class="link-item" title="API" href="@BlogOptions.Value.ApiUrl">
             <i class="iconfont iconapi"></i>
         </a>
-        <a target="_blank" class="link-item" title="Admin" href="@Common.BlogAdminUrl">
+        <a target="_blank" class="link-item" title="Admin" href="@BlogOptions.Value.AdminUrl">
             <i class="iconfont iconcode"></i>
         </a>
-        <a target="_blank" class="link-item" title="Github" href="@Common.GithubUrl">
+        <a target="_blank" class="link-item" title="Github" href="@BlogOptions.Value.GithubUrl">
             <i class="iconfont icongithub"></i>
         </a>
-        <a class="link-item telegram" title="Telegram" href="@Common.TelegramUrl">
+        <a class="link-item telegram" title="Telegram" href="@BlogOptions.Value.TelegramUrl">
             <i class="iconfont icontelegram"></i>
         </a>
     </div>

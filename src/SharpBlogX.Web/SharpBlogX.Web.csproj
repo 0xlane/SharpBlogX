@@ -11,6 +11,7 @@
     <PackageReference Include="Vditor" Version="0.1.0-nightly-201209082656" />
     
     <ProjectReference Include="..\SharpBlogX.Response\SharpBlogX.Response.csproj" />
+    <ProjectReference Include="..\SharpBlogX.Core\SharpBlogX.Core.csproj" />
   </ItemGroup>
 
 </Project>

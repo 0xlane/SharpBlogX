@@ -1,4 +1,4 @@
-﻿@using SharpBlogX.Web
+﻿@inject Microsoft.Extensions.Options.IOptions<SharpBlogX.Options.BlogOptions> BlogOptions
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="keywords" content="SharpBlog,REInject,个人博客">
     <meta name="description" content="REInject的个人博客,用于记录生活积累笔记。">
-    <title>@ViewData["Title"]@Common.BlogTitle⭐⭐⭐</title>
+    <title>@ViewData["Title"]@BlogOptions.Value.Title⭐⭐⭐</title>
     <base href="/" />
     <environment include="Development">
         <link rel="icon" href="~/images/avatar.png" />
@@ -14,9 +14,13 @@
     </environment>
     <environment exclude="Development">
         <link rel="icon" href="https://cdn.jsdelivr.net/gh/cnsimo/pic_bed@master/ZPy86P.png" />
-        <link rel="stylesheet" href="https://static.sharpblog.cn/css/app.css">
+        <link rel="stylesheet" href="@BlogOptions.Value.StaticUrl/css/app.css">
     </environment>
     @await RenderSectionAsync("styles", required: false)
+    <script>
+        const api = "@BlogOptions.Value.ApiUrl";
+        const cdn = "https://cdn.jsdelivr.net/gh/imuncle/live2d@master";
+    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -34,7 +38,7 @@
     </environment>
     <environment exclude="Development">
         <script src="https://cdn.jsdelivr.net/gh/imuncle/live2d@master/js/live2d.js"></script>
-        <script src="https://static.sharpblog.cn/js/app.js"></script>
+        <script src="@BlogOptions.Value.StaticUrl/js/app.js"></script>
     </environment>
     @await RenderSectionAsync("scripts", required: false)
 </body>

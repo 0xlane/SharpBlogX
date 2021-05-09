@@ -1,9 +1,9 @@
-﻿@using SharpBlogX.Web
+﻿@inject Microsoft.Extensions.Options.IOptions<SharpBlogX.Options.BlogOptions> BlogOptions
 <header>
     <nav class="navbar">
         <div class="container">
             <div class="navbar-header header-logo">
-                <a href="/">🤣@Common.BlogTitle</a>
+                <a href="/">🤣@BlogOptions.Value.Title</a>
             </div>
             <div class="menu navbar-right">
                 <a class="menu-item" href="/posts">Posts</a>
@@ -19,7 +19,7 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">🤣@Common.BlogTitle</a>
+                    <a href="/">🤣@BlogOptions.Value.Title</a>
                     <a id="mobile-toggle-theme">&nbsp;·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle">&#9776; Menu</div>

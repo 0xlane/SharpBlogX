@@ -1,7 +1,4 @@
 ﻿window.onload = function () {
-    const api = "https://api.sharpblog.cn:43380";
-    const cdn = "https://cdn.jsdelivr.net/gh/imuncle/live2d@master";
-
     const currentTheme = window.localStorage.getItem('theme');
     const isDark = currentTheme === 'dark';
 

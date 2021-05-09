@@ -1,4 +1,5 @@
 ﻿@page "/2048"
+@inject Microsoft.Extensions.Options.IOptions<SharpBlogX.Options.BlogOptions> BlogOptions
 @{
     ViewData["Title"] = "程序员版2048 - ";
 }
@@ -41,9 +42,9 @@
 </div>
 @section styles{
     <environment include="Development"><link rel="stylesheet" href="~/css/2048.css"></environment>
-    <environment exclude="Development"><link rel="stylesheet" href="https://static.sharpblog.cn/css/2048.css"></environment>
+    <environment exclude="Development"><link rel="stylesheet" href="@BlogOptions.Value.StaticUrl/css/2048.css"></environment>
 }
 @section scripts{
     <environment include="Development"><script src="~/js/2048.js"></script></environment>
-    <environment exclude="Development"><script src="https://static.sharpblog.cn/js/2048.js"></script></environment>
+    <environment exclude="Development"><script src="@BlogOptions.Value.StaticUrl/js/2048.js"></script></environment>
 }
