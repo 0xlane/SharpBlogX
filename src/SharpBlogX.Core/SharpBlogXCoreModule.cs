@@ -15,6 +15,7 @@ namespace SharpBlogX
             var configuration = context.Services.GetConfiguration();
 
             var blog = new BlogOptions();
+            var notification = new NotificationOptions();
             var swagger = new SwaggerOptions();
             var storage = new StorageOptions();
             var cors = new CorsOptions();
@@ -34,6 +35,16 @@ namespace SharpBlogX
                 options.AdminUrl = blogOption.GetValue<string>(nameof(options.AdminUrl));
 
                 blog = options;
+            });
+
+            PreConfigure<NotificationOptions>(options => 
+            {
+                var notificationOption = configuration.GetSection("notification");
+                Configure<NotificationOptions>(notificationOption);
+
+                options.FtqqUrl = notificationOption.GetValue<string>(nameof(options.FtqqUrl));
+
+                notification = options;
             });
 
             PreConfigure<SwaggerOptions>(options =>
@@ -201,6 +212,7 @@ namespace SharpBlogX
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             context.Services.ExecutePreConfiguredActions<BlogOptions>();
+            context.Services.ExecutePreConfiguredActions<NotificationOptions>();
             context.Services.ExecutePreConfiguredActions<SwaggerOptions>();
             context.Services.ExecutePreConfiguredActions<StorageOptions>();
             context.Services.ExecutePreConfiguredActions<CorsOptions>();

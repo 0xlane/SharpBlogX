@@ -1,4 +1,6 @@
-﻿<FooterView Copyright="@($"{DateTime.Now.Year} @Common.BlogTitle⭐⭐⭐")" Links="Links" />
+﻿@inject Microsoft.Extensions.Options.IOptions<SharpBlogX.Options.BlogOptions> BlogOptions
+
+<FooterView Copyright="@($"{DateTime.Now.Year} {BlogOptions.Value.Title}⭐⭐⭐")" Links="Links" />
 
 @code
 {

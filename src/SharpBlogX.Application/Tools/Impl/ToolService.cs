@@ -19,6 +19,7 @@ using TencentCloud.Cdn.V20180606;
 using TencentCloud.Cdn.V20180606.Models;
 using TencentCloud.Common;
 using TencentCloud.Common.Profile;
+using Microsoft.Extensions.Logging;
 
 namespace SharpBlogX.Tools.Impl
 {
@@ -27,14 +28,20 @@ namespace SharpBlogX.Tools.Impl
         private readonly IHttpClientFactory _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly TencentCloudOptions _tencentCloudOptions;
+        private readonly NotificationOptions _notificationOptions;
+        private readonly ILogger<ToolService> _logger;
 
         public ToolService(IHttpClientFactory httpClient,
                            IHttpContextAccessor httpContextAccessor,
-                           IOptions<TencentCloudOptions> tencentCloudOptions)
+                           IOptions<TencentCloudOptions> tencentCloudOptions,
+                           IOptions<NotificationOptions> notificationOptions,
+                           ILogger<ToolService> logger)
         {
             _httpClient = httpClient;
             _httpContextAccessor = httpContextAccessor;
             _tencentCloudOptions = tencentCloudOptions.Value;
+            _notificationOptions = notificationOptions.Value;
+            _logger = logger;
         }
 
         /// <summary>
@@ -126,7 +133,8 @@ namespace SharpBlogX.Tools.Impl
             content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
 
             using var client = _httpClient.CreateClient();
-            await client.PostAsync("https://sc.ftqq.com/SCU60393T5a94df1d5a9274125293f34a6acf928f5d78f551cf6d6.send", content);
+            _logger.LogInformation($"FtqqUrl: {_notificationOptions.FtqqUrl}");
+            await client.PostAsync(_notificationOptions.FtqqUrl, content);
 
             return response;
         }

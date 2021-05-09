@@ -6,6 +6,9 @@ blog:
   webUrl: 'https://sharpblog.cn'
   adminUrl: 'https://admin.sharpblog.cn'
 
+notification:
+  ftqqUrl: 'https://sc.ftqq.com/{YOUR_SCKEY}.send'
+
 swagger:
   version: 'v4.0.0'
   name: 'SharpBlog'

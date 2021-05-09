@@ -5,7 +5,7 @@
     "url": "2021-05-08-about-sharpblog",
     "markdown": "该博客使用 csharp 编写而成，故取名为 SharpBlog。\n它的前端代码借鉴于 [leaveit](https://themes.gohugo.io/leaveit/)，后端代码采用 .NET 5 + Abp，许多地方直接基于网上公开的代码拼凑修改而来，若存在安全问题还望及时告知。博客源代码公开在 [cnsimo/SharpBlogX](https://github.com/cnsimo/sharpblogx)，感兴趣的可以 Star 一下，关于部署和使用问题都欢迎提意见！",
     "category": "博客日志",
-    "tag": [
+    "tags": [
       "SharpBlog"
     ],
     "createdAt": "2021-05-08 15:11:14"

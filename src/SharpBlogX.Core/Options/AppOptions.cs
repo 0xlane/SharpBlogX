@@ -9,6 +9,12 @@
         public BlogOptions Blog { get; set; }
 
         /// <summary>
+        /// Notification
+        /// </summary>
+        /// <value></value>
+        public NotificationOptions Notification { get; set; }
+
+        /// <summary>
         /// Swagger
         /// </summary>
         public SwaggerOptions Swagger { get; set; }
