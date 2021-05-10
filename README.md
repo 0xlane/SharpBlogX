@@ -2,66 +2,65 @@
 
 一个使用 csharp 开发而成的博客网站，支持跨平台部署，界面美观，适合喜欢 csharp、markdown 的技术朋友。
 
-![web_home](https://cdn.jsdelivr.net/gh/cnsimo/pic_bed@master/web_home.png)
+Site: [https://sharpblog.cn](https://sharpblog.cn)
+
+Document: [SharpBlog-Docs](https://www.yuque.com/gotoreinject/sharpblog/dcylg9)
 
 # 架构
 
-前端代码直接引用自一个 hugo 主题：[leaveit](https://themes.gohugo.io/leaveit/)
+.NET 5/Blazor/Abp。
 
-后端采用 .NET 5/Blazor/Abp。
+- **sharpblog-api**: api service, default listening in 44380, provide api for web and admin.
+- **sharpblog-web**: web service.
+- **sharpblog-admin**: backend service.
 
-# 部署
+# 特点
 
-两种方式：直接部署、Docker 部署，推荐后者。
+- 跨平台部署，支持 docker
+- 良好的 API
+- .NET 5 支持
+- SEO 优化
+- 开源，代码结构清晰
+- 多主题支持
+- MarkDown 支持
+- API、Admin、Web 服务分布式部署
 
-## Docker 部署
+# 环境依赖
 
-1. Please use root priv for following.
+- .NET 5 [dev: sdk, publish: runtime]
+- mongo [store data]
+- redis [cache data]
+- linux/windows/mac
 
+# 本地运行
+
+提前准备好 mongo/redis, 手动在 appsettings.yml 中修改成自己的地址.
+
+**1. 启动 api 组件：**
 ```bash
-# install docker
-apt install docker.io
-apt install docker-compose
-
-# deploy redis, if you need to use cache function
-docker pull redis
-docker run -itd --name redis -p 127.0.0.1:6379:6379 redis --requirepass "123456"
-
-# deploy mongo
-mkdir mongo-auth && cd mongo-auth
-cat << EOF > initdb.js
-db.createUser(
-    {
-        user: "admin",
-        pwd: "123456",
-        roles:[
-            {
-                role: "readWrite",
-                db:   "sharpblog"
-            }
-        ]
-    }
-);
-EOF
-
-cat <<EOF > docker-compose.yml
-mongo:
-  image: mongo:latest
-  container_name: mongo
-  environment:
-      MONGO_INITDB_DATABASE: sharpblog
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: 123456
-  volumes:
-      - ./initdb.js:/docker-entrypoint-initdb.d/initdb.js:ro
-  ports:
-    - "9898:27017"
-  command: mongod --auth
-EOF
-docker-compose up -d
+cd /source/to/SharpBlogX/src/SharpBlogX.Api
+dotnet run
 ```
+访问 `http://localhost:44380` 查看接口列表。
 
-2. 待补充
+**2. 启动 web 组件**
+```bash
+cd /source/to/SharpBlogX/src/SharpBlogX.Web
+dotnet run
+```
+访问 `http://localhost:44381` 查看博客页面。
+
+**3. 启动 admin 组件**
+```bash
+cd /source/to/SharpBlogX/src/SharpBlogX.Admin
+dotnet run
+```
+访问 `http://localhost:44382` 查看博客页面。
+
+
+# 部署方式
+
+推荐使用 docker 进行部署，参考文档：[sharpblog-docs](https://www.yuque.com/gotoreinject/sharpblog/dcylg9)。
 
 # 功能截图
 
