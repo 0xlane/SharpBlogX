@@ -46,7 +46,7 @@ namespace SharpBlogX.Admin.Pages.OAuth
                     await Notification.Warning(new NotificationConfig
                     {
                         Message = response.Message,
-                        Description = "Sorry, this account is not authorized, please contact 阿星Plus"
+                        Description = "Sorry, this account is not authorized, please contact administrator"
                     });
                     NavigationManager.NavigateTo("/login", true);
                 }

@@ -48,7 +48,7 @@ namespace SharpBlogX.DataSeed
                     {
                         var messageReply = new MessageReply();
 
-                        if (reply.Nick == "阿星Plus")
+                        if (reply.Nick == "REInject")
                         {
                             messageReply.UserId = me.Id.ToString();
                             messageReply.Name = me.Name;
