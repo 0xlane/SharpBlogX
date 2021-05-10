@@ -1,5 +1,6 @@
 ﻿@page "/post/{url}"
 @model SharpBlogX.Web.Pages.Posts.PostModel
+@inject Microsoft.Extensions.Options.IOptions<SharpBlogX.Options.BlogOptions> BlogOptions
 @{
     var post = Model.Post.Result;
 
@@ -30,7 +31,7 @@
         </p>
         <p class="copyright-item">
             <span>Permalink:</span>
-            <span><a href="/post/@post.Url">https://sharpblog.cn/post/@post.Url</a></span>
+            <span><a href="/post/@post.Url">@BlogOptions.Value.WebUrl/post/@post.Url</a></span>
         </p>
         <p class="copyright-item">
             <span>License:</span>
