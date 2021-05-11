@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -212,6 +215,28 @@ namespace SharpBlogX.Extensions
             if (string.IsNullOrEmpty(key)) return JsonConvert.DeserializeObject<T>(json);
 
             return JsonConvert.DeserializeObject<object>(json) is not JObject obj ? new T() : JsonConvert.DeserializeObject<T>(obj[key].ToString());
+        }
+
+        /// <summary>
+        /// Create self-signed certificate
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="DistinguishedName"></param>
+        /// <returns></returns>
+        public static X509Certificate2 CreateSelfSignedCertificate(this IPAddress address, string DistinguishedName = "")
+        {
+            if (DistinguishedName == "") { DistinguishedName = "CN=" + address; }
+            using (RSA rsa = RSA.Create(2048))
+            {
+                var request = new CertificateRequest(new X500DistinguishedName(DistinguishedName), rsa, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+                request.CertificateExtensions.Add(new X509KeyUsageExtension(X509KeyUsageFlags.DataEncipherment | X509KeyUsageFlags.KeyEncipherment | X509KeyUsageFlags.DigitalSignature, false));
+                request.CertificateExtensions.Add(new X509EnhancedKeyUsageExtension(new OidCollection { new Oid("1.3.6.1.5.5.7.3.1") }, false));
+                SubjectAlternativeNameBuilder subjectAlternativeName = new SubjectAlternativeNameBuilder();
+                subjectAlternativeName.AddIpAddress(address);
+
+                request.CertificateExtensions.Add(subjectAlternativeName.Build());
+                return request.CreateSelfSigned(new DateTimeOffset(DateTime.UtcNow.AddDays(-1)), new DateTimeOffset(DateTime.UtcNow.AddDays(3650)));
+            }
         }
     }
 }

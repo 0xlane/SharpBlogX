@@ -28,6 +28,14 @@ using Volo.Abp.Autofac;
 using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.Data;
 using Volo.Abp.Modularity;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using SharpBlogX.Extensions;
+using Microsoft.AspNetCore.Hosting;
+using System.Security.Authentication;
+using System.Security.Cryptography;
+using Microsoft.Extensions.Logging;
 
 namespace SharpBlogX.Api
 {
@@ -58,6 +66,45 @@ namespace SharpBlogX.Api
             CofiggureHealthChecks(context.Services);
             ConfigureAuthentication(context.Services);
             ConfigureSwaggerServices(context.Services);
+        }
+
+        private void ConfigureKestrel()
+        {
+            Configure<KestrelServerOptions>(options => 
+            {
+                IPAddress address = null;
+                try
+                {
+                    address = IPAddress.Parse(AppOptions.Https.ListenAddress);
+                }
+                catch (FormatException)
+                {
+                    address = Dns.GetHostAddresses(AppOptions.Https.ListenAddress).FirstOrDefault();
+                }
+                IPEndPoint SharpBlogEndpoint = new IPEndPoint(address, AppOptions.Https.ListenPort);
+
+                options.Listen(SharpBlogEndpoint, listenOptions => 
+                {
+                    listenOptions.UseHttps(httpsOptions =>
+                    {
+                        if (!File.Exists(AppOptions.Https.PrivateCertFile) || !File.Exists(AppOptions.Https.PublicCertFile))
+                        {
+                            X509Certificate2 certificate = SharpBlogEndpoint.Address.CreateSelfSignedCertificate("CN=SharpBlog");
+                            File.WriteAllBytes(AppOptions.Https.PrivateCertFile, certificate.Export(X509ContentType.Pfx));
+                            File.WriteAllBytes(AppOptions.Https.PublicCertFile, certificate.Export(X509ContentType.Cert));
+                        }
+                        try
+                        {
+                            httpsOptions.ServerCertificate = new X509Certificate2(AppOptions.Https.PrivateCertFile);
+                        }
+                        catch (CryptographicException)
+                        {
+                            Console.Error.WriteLine("Error importing SharpBlog certificate.");
+                        }
+                        httpsOptions.SslProtocols = SslProtocols.Tls12;
+                    });
+                });
+            });
         }
 
         private void ConfigureExceptionFilter()

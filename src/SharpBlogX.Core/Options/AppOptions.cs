@@ -3,6 +3,12 @@
     public class AppOptions
     {
         /// <summary>
+        /// Https
+        /// </summary>
+        /// <value></value>
+        public HttpsOptions Https { get; set; }
+
+        /// <summary>
         /// Blog
         /// </summary>
         /// <value></value>

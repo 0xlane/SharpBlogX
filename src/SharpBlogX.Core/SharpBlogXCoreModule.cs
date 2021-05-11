@@ -14,6 +14,7 @@ namespace SharpBlogX
         {
             var configuration = context.Services.GetConfiguration();
 
+            var https = new HttpsOptions();
             var blog = new BlogOptions();
             var notification = new NotificationOptions();
             var swagger = new SwaggerOptions();
@@ -23,6 +24,19 @@ namespace SharpBlogX
             var worker = new WorkerOptions();
             var tencentCloud = new TencentCloudOptions();
             var authorize = new AuthorizeOptions();
+
+            PreConfigure<HttpsOptions>(options => 
+            {
+                var httpsOption = configuration.GetSection("https");
+                Configure<HttpsOptions>(httpsOption);
+
+                options.ListenAddress = httpsOption.GetValue<string>(nameof(options.ListenAddress));
+                options.ListenPort = httpsOption.GetValue<int>(nameof(options.ListenPort));
+                options.PublicCertFile = httpsOption.GetValue<string>(nameof(options.PublicCertFile));
+                options.PrivateCertFile = httpsOption.GetValue<string>(nameof(options.PrivateCertFile));
+
+                https = options;
+            });
 
             PreConfigure<BlogOptions>(options => 
             {
@@ -211,6 +225,7 @@ namespace SharpBlogX
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            context.Services.ExecutePreConfiguredActions<HttpsOptions>();
             context.Services.ExecutePreConfiguredActions<BlogOptions>();
             context.Services.ExecutePreConfiguredActions<NotificationOptions>();
             context.Services.ExecutePreConfiguredActions<SwaggerOptions>();

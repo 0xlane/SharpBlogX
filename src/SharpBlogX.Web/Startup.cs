@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace SharpBlogX.Web
 {
@@ -13,11 +14,17 @@ namespace SharpBlogX.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/error");
+            }
+            
+            app.UseSerilogRequestLogging();
+            
             var provider = new FileExtensionContentTypeProvider();
             provider.Mappings[".mtn"] = "application/octet-stream";
             provider.Mappings[".moc"] = "application/octet-stream";
 
-            app.UseExceptionHandler("/error");
             app.UseStatusCodePagesWithRedirects("/error");
             app.UseHsts();
             app.UseHttpsRedirection();

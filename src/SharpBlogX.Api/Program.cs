@@ -53,6 +53,10 @@ namespace SharpBlogX.Api
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseKestrel(options => 
+                    {
+                        
+                    });
                     webBuilder.UseStartup<Startup>();
                 }).UseAutofac().UseSerilog();
     }

@@ -1,10 +1,15 @@
 ---
-urls: 'http://0.0.0.0:44382'
+https:
+  listenAddress: '0.0.0.0'
+  listenPort: 44382
+  publicCertFile: 'sharpblog-dev-public.cer'
+  privateCertFile: 'sharpblog-dev-private.pfx'
+
 blog:
   title: 'SharpBlog'
-  staticUrl: 'http://localhost:44382'
-  apiUrl: 'http://localhost:44380'
-  webUrl: 'http://localhost:44381'
-  adminUrl: 'http://localhost:44382'
+  staticUrl: 'https://localhost:44382'
+  apiUrl: 'https://localhost:44380'
+  webUrl: 'https://localhost:44381'
+  adminUrl: 'https://localhost:44382'
   githubUrl: 'https://github.com/cnsimo'
   telegramUrl: 'https://t.me/reinj3ct'

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace SharpBlogX.Admin
 {
@@ -12,7 +13,12 @@ namespace SharpBlogX.Admin
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseExceptionHandler("/error");
+            else
+            {
+                app.UseExceptionHandler("/error");
+            }
+            
+            app.UseSerilogRequestLogging();
             app.UseHsts();
             app.UseHttpsRedirection();
             app.UseStaticFiles();

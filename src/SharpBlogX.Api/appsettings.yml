@@ -1,5 +1,10 @@
 ﻿---
-urls: 'http://0.0.0.0:44380'
+https:
+  listenAddress: '0.0.0.0'
+  listenPort: 44380
+  publicCertFile: 'sharpblog-dev-public.cer'
+  privateCertFile: 'sharpblog-dev-private.pfx'
+
 blog:
   staticUrl: 'https://static.sharpblog.cn'
   apiUrl: 'https://api.sharpblog.cn'

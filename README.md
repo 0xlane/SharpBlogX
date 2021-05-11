@@ -41,21 +41,21 @@ Document: [SharpBlog-Docs](https://www.yuque.com/gotoreinject/sharpblog/dcylg9)
 cd /source/to/SharpBlogX/src/SharpBlogX.Api
 dotnet run
 ```
-访问 `http://localhost:44380` 查看接口列表。
+访问 `https://localhost:44380` 查看接口列表。
 
 **2. 启动 web 组件**
 ```bash
 cd /source/to/SharpBlogX/src/SharpBlogX.Web
 dotnet run
 ```
-访问 `http://localhost:44381` 查看博客页面。
+访问 `https://localhost:44381` 查看博客页面。
 
 **3. 启动 admin 组件**
 ```bash
 cd /source/to/SharpBlogX/src/SharpBlogX.Admin
 dotnet run
 ```
-访问 `http://localhost:44382` 查看博客页面。
+访问 `https://localhost:44382` 查看博客页面。
 
 
 # 部署方式
