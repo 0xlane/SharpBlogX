@@ -23,9 +23,9 @@ swagger:
   documentTitle: 'Api - SharpBlog'
 
 storage:
-  mongodb: 'mongodb://admin:123456@localhost:27011/sharpblogx'
+  mongodb: 'mongodb://admin:123456@localhost:27017/sharpblog'
   redisIsEnabled: true
-  redis: '127.0.0.1:6379,defaultDatabase=1,password=Kkk@d123'
+  redis: 'localhost:6379,defaultDatabase=1,password=123456'
 
 cors:
   policyName: 'sharpblog-policy'

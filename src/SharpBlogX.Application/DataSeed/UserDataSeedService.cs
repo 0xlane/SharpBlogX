@@ -32,5 +32,20 @@ namespace SharpBlogX.DataSeed
 
             Console.WriteLine($"Successfully processed {users.Count} user data.");
         }
+
+        public async Task InitAdminUserAsync()
+        {
+            if (await _users.GetCountAsync() > 0) return;
+
+            var user = new User();
+            user.Name = "Administrator";
+            user.Username = "admin";
+            user.Password = "E10ADC3949BA59ABBE56E057F20F883E";
+            user.Email = "admin@sharpblog.cn";
+            user.Avatar = "https://cdn.jsdelivr.net/gh/cnsimo/pic_bed@master/ZPy86P.png";
+            user.IsAdmin = true;
+
+            await _users.InsertAsync(user);
+        }
     }
 }

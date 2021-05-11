@@ -36,6 +36,8 @@ using Microsoft.AspNetCore.Hosting;
 using System.Security.Authentication;
 using System.Security.Cryptography;
 using Microsoft.Extensions.Logging;
+using Volo.Abp.Threading;
+using SharpBlogX.DataSeed;
 
 namespace SharpBlogX.Api
 {
@@ -324,6 +326,17 @@ namespace SharpBlogX.Api
             app.UseAuditing();
             app.UseAbpSerilogEnrichers();
             app.UseConfiguredEndpoints();
+
+            // 初始化管理员账户：admin/123456
+            using (var scope = context.ServiceProvider.CreateScope())
+            {
+                AsyncHelper.RunSync(async () =>
+                {
+                    await scope.ServiceProvider
+                        .GetRequiredService<UserDataSeedService>()
+                        .InitAdminUserAsync();
+                });
+            }
         }
     }
 }
