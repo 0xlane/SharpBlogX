@@ -58,6 +58,7 @@ namespace SharpBlogX.Api
         {
             AppOptions = context.Services.ExecutePreConfiguredActions<AppOptions>();
 
+            ConfigureKestrel();
             ConfigureExceptionFilter();
             ConfigureAutoApiControllers();
             ConfigureDbConnection();
