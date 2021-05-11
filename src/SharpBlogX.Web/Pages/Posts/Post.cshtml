@@ -3,7 +3,6 @@
 @inject Microsoft.Extensions.Options.IOptions<SharpBlogX.Options.BlogOptions> BlogOptions
 @{
     var post = Model.Post.Result;
-
     ViewData["Title"] = $"{post.Title} - ";
 }
 <article class="post-wrap">
@@ -20,7 +19,7 @@
         </div>
     </header>
     <div class="post-content">
-        <component type="typeof(SharpBlogX.Web.Components.VditorPreview)"
+        <component type="typeof(SharpBlogX.Web.Components.MarkdownPreview)"
                    render-mode="ServerPrerendered"
                    param-Markdown="@post.Markdown" />
     </div>

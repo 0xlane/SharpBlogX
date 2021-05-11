@@ -1,0 +1,20 @@
+@using MarkdownSharp
+@convertedMarkdown
+
+@code{
+    // Use MarkupString type to prevent Blazor from using HtmlEncoder.Encode
+    private MarkupString convertedMarkdown;
+
+    [Parameter]
+    public string Markdown { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        MarkdownOptions mdOptions = new MarkdownOptions();
+        mdOptions.AutoHyperlink = true;
+        mdOptions.LinkEmails = true;
+        var MDRender = new Markdown(mdOptions);
+        var html = MDRender.Transform(Markdown);
+        convertedMarkdown = (MarkupString)html; // or new MarkupString(html)
+    }
+}
