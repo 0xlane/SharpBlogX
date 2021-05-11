@@ -3,9 +3,9 @@
     "title": "About SharpBlog",
     "author": "REInject",
     "url": "2021-05-08-about-sharpblog",
-    "markdown": "该博客使用 csharp 编写而成，故取名为 SharpBlog。\n它的前端代码借鉴于 [leaveit](https://themes.gohugo.io/leaveit/)，后端代码采用 .NET 5 + Abp，许多地方直接基于网上公开的代码拼凑修改而来，若存在安全问题还望及时告知。博客源代码公开在 [cnsimo/SharpBlogX](https://github.com/cnsimo/sharpblogx)，感兴趣的可以 Star 一下，关于部署和使用问题都欢迎提意见！",
+    "markdown": "SharpBlog 是一个基于 .NET Core 的开源个人博客系统，项目地址：[github](https://github.com/cnsimo/sharpblogx)。\n\n方便自己同时也方便他人，整理了一些文档给大家：[语雀](https://www.yuque.com/gotoreinject/sharpblog/dcylg9)。\n\n**1. 它有哪些特点？**\n\n- 开源且方便部署，利用已发布的 docker 镜像可以快速部署。\n- 跨平台支持，这是 .NET Core 赋予它的能力。\n- 可分布式部署，API、WEB、Admin 模块可分别搭建在不同的机器上。\n- 配置灵活，通过 appsettings.yml 文件获取配置，无需重新编译。\n- 支持 Markdown，这是广大技术人员快速记录文档的利器。\n- 多个内置主题，虽然还未开发，但是这确实是我想要的功能。\n- 全站 HTTPS 通信，保障数据安全。\n- 缓存支持，加快 API 数据响应速度。\n- SEO 优化，文章 url 支持自定义 slug。\n\n**2. 如何快速部署？**\n\n参考 [《使用 Docker 快速部署》](https://www.yuque.com/gotoreinject/sharpblog/pfr0g3)。\n\n使用过程中有任何问题或建议，欢迎 [github issues](https://github.com/cnsimo/sharpblogx) 或私信！\n",
     "category": "博客日志",
-    "tags": [
+    "tag": [
       "SharpBlog"
     ],
     "createdAt": "2021-05-08 15:11:14"
