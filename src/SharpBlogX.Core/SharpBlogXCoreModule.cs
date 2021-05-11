@@ -202,6 +202,8 @@ namespace SharpBlogX
             });
             PreConfigure<AppOptions>(options =>
             {
+                options.Https = https;
+                options.Blog = blog;
                 options.Swagger = swagger;
                 options.Storage = storage;
                 options.Cors = cors;

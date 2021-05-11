@@ -28,16 +28,15 @@ using Volo.Abp.Autofac;
 using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.Data;
 using Volo.Abp.Modularity;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using SharpBlogX.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using System.Security.Authentication;
 using System.Security.Cryptography;
-using Microsoft.Extensions.Logging;
 using Volo.Abp.Threading;
 using SharpBlogX.DataSeed;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 namespace SharpBlogX.Api
 {
