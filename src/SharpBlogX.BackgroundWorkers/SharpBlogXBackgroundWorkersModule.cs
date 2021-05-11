@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Text;
 using Volo.Abp.BackgroundWorkers.Quartz;
 using Volo.Abp.Modularity;
+using System.Net.Http;
+using System.Net;
 
 namespace SharpBlogX
 {
@@ -21,7 +23,11 @@ namespace SharpBlogX
                 options.IsAutoRegisterEnabled = option.IsEnabled;
             });
 
-            context.Services.AddHttpClient();
+            context.Services.AddHttpClient("hot")
+                .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+                {
+                    AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
+                });
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
