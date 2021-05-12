@@ -262,7 +262,7 @@ namespace SharpBlogX.Workers
                         case Hot.KnownSources.oschina:
                             {
                                 var html = result as HtmlDocument;
-                                var nodes = html.DocumentNode.SelectNodes("//div[@class='ui items']/div/div/a").ToList();
+                                var nodes = html.DocumentNode.SelectNodes("//div[@class='ui items']/div/div[@class='content']/a").ToList();
 
                                 nodes.ForEach(x =>
                                 {
