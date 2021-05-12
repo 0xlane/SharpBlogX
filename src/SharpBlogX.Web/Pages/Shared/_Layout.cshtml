@@ -8,18 +8,12 @@
     <meta name="description" content="REInject的个人博客,用于记录生活积累笔记。">
     <title>@ViewData["Title"]@BlogOptions.Value.Title⭐⭐⭐</title>
     <base href="/" />
-    <environment include="Development">
-        <link rel="icon" href="~/images/avatar.png" />
-        <link rel="stylesheet" href="~/css/app.css" asp-append-version="true" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="icon" href="https://cdn.jsdelivr.net/gh/cnsimo/pic_bed@master/ZPy86P.png" />
-        <link rel="stylesheet" href="@BlogOptions.Value.StaticUrl/css/app.css">
-    </environment>
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/cnsimo/pic_bed@master/ZPy86P.png" />
+    <link rel="stylesheet" href="@BlogOptions.Value.StaticUrl/css/app.css">
     @await RenderSectionAsync("styles", required: false)
     <script>
         const api = "@BlogOptions.Value.ApiUrl";
-        const cdn = "https://cdn.jsdelivr.net/gh/imuncle/live2d@master";
+        const cdn = "@BlogOptions.Value.StaticUrl";
     </script>
 </head>
 <body>
@@ -32,14 +26,8 @@
         </div>
         @{ await Html.RenderPartialAsync("_Footer"); }
     </div>
-    <environment include="Development">
-    <script src="~/live2d/L2Dwidget.min.js"></script>
-    <script src="~/js/app.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://cdn.jsdelivr.net/gh/imuncle/live2d@master/js/live2d.js"></script>
-        <script src="@BlogOptions.Value.StaticUrl/js/app.js"></script>
-    </environment>
+    <script src="@BlogOptions.Value.StaticUrl/live2d/L2Dwidget.min.js"></script>
+    <script src="@BlogOptions.Value.StaticUrl/js/app.js"></script>
     @await RenderSectionAsync("scripts", required: false)
 </body>
 </html>

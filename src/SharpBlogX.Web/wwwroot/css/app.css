@@ -55,6 +55,7 @@ sup {
 }
 img {
     border-style: none;
+    max-width: 100%;
 }
 button, input, optgroup, select, textarea {
     margin: 0;
@@ -175,7 +176,7 @@ body.dark-theme {
     transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 }
 a {
-    color: #161209;
+    color: #124260;
     text-decoration: none;
     cursor: pointer;
     transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
@@ -1608,7 +1609,4 @@ button:focus {
     text-overflow: ellipsis;
     white-space: nowrap;
     line-height: 35px;
-}
-.post-wrap ul li {
-    list-style: none;
 }
