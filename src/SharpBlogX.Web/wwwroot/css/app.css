@@ -196,6 +196,9 @@ a:hover {
     text-decoration: none;
     transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 }
+.post-content a {
+    color: #124260
+}
 .wrapper {
     display: flex;
     width: 100%;
