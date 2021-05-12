@@ -1,0 +1,14 @@
+@renderedHtml
+
+@code{
+    // Use MarkupString type to prevent Blazor from using HtmlEncoder.Encode
+    private MarkupString renderedHtml;
+
+    [Parameter]
+    public string html { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        renderedHtml = (MarkupString)html; // or new MarkupString(html)
+    }
+}

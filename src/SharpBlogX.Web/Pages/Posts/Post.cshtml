@@ -1,5 +1,4 @@
 ﻿@page "/post/{url}"
-@using Microsoft.AspNetCore.Components
 @model SharpBlogX.Web.Pages.Posts.PostModel
 @inject Microsoft.Extensions.Options.IOptions<SharpBlogX.Options.BlogOptions> BlogOptions
 @{
@@ -20,7 +19,9 @@
         </div>
     </header>
     <div class="post-content">
-        @(new MarkupString(post.PreviewHtml))
+        <component type="typeof(SharpBlogX.Web.Components.MarkdownPreview)"
+                    render-mode="ServerPrerendered"
+                    param-html="@post.PreviewHtml" />
     </div>
     <section class="post-copyright">
         <p class="copyright-item">

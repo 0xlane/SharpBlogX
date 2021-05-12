@@ -254,7 +254,7 @@ namespace SharpBlogX.Extensions
         /// <returns></returns>
         public static string ToPreviewHtml(this string markdown)
         {
-            return Markdig.Markdown.ToHtml(markdown ?? "", _pipeline);
+            return Markdig.Markdown.ToHtml(markdown, _pipeline);
         }
     }
 }
