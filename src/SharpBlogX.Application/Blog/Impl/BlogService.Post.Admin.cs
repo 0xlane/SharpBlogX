@@ -135,7 +135,7 @@ namespace SharpBlogX.Blog.Impl
             }
 
             var result = ObjectMapper.Map<Post, PostDto>(post);
-            result.Url = result.Url.Split("-").Last();
+            result.Url = String.Join("-", result.Url.Split("-").Skip(3));
 
             response.Result = result;
             return response;
