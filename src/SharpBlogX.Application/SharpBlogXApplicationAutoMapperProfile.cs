@@ -19,7 +19,9 @@ namespace SharpBlogX
         {
             CreateMap<Post, PostDto>().ForMember(x => x.CreatedAt, dto => dto.MapFrom(opt => opt.CreatedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss")));
 
-            CreateMap<Post, PostDetailDto>().ForMember(x => x.CreatedAt, dto => dto.MapFrom(opt => opt.CreatedAt.ToLocalTime().FormatTime()));
+            CreateMap<Post, PostDetailDto>()
+                .ForMember(x => x.CreatedAt, dto => dto.MapFrom(opt => opt.CreatedAt.ToLocalTime().FormatTime()))
+                .ForMember(x => x.PreviewHtml, dto => dto.MapFrom(opt => opt.Markdown.ToPreviewHtml()));
 
             CreateMap<Post, PostBriefDto>()
                 .ForMember(x => x.CreatedAt, dto => dto.MapFrom(opt => opt.CreatedAt.ToLocalTime().FormatTime()))

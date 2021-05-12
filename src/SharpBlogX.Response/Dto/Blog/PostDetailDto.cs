@@ -12,6 +12,8 @@ namespace SharpBlogX.Dto.Blog
 
         public string Markdown { get; set; }
 
+        public string PreviewHtml { get; set; }
+
         public CategoryDto Category { get; set; }
 
         public List<TagDto> Tags { get; set; }

@@ -11,10 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.24.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="MongoDB.Bson" Version="2.11.6" />
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.2" />
     <PackageReference Include="Volo.Abp.Ddd.Domain" Version="4.2.0" />
+    <PackageReference Include="WebStoating.Markdig.Prism" Version="1.0.0" />
     <PackageReference Include="YamlDotNet" Version="9.1.4" />
 
     <ProjectReference Include="..\SharpBlogX.Response\SharpBlogX.Response.csproj" />

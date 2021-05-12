@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Markdig;
+using Markdig.Prism;
+using Microsoft.AspNetCore.Http;
 using MongoDB.Bson;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -237,6 +239,22 @@ namespace SharpBlogX.Extensions
                 request.CertificateExtensions.Add(subjectAlternativeName.Build());
                 return request.CreateSelfSigned(new DateTimeOffset(DateTime.UtcNow.AddDays(-1)), new DateTimeOffset(DateTime.UtcNow.AddDays(3650)));
             }
+        }
+
+        /// <summary>
+        /// Markdown Pipeline
+        /// </summary>
+        /// <returns></returns>
+        private static readonly MarkdownPipeline _pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UsePrism().Build();
+
+        /// <summary>
+        /// Convert markdown to html.
+        /// </summary>
+        /// <param name="markdown"></param>
+        /// <returns></returns>
+        public static string ToPreviewHtml(this string markdown)
+        {
+            return Markdig.Markdown.ToHtml(markdown ?? "", _pipeline);
         }
     }
 }
