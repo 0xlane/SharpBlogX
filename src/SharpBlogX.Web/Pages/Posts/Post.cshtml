@@ -1,6 +1,7 @@
 ﻿@page "/post/{url}"
 @model SharpBlogX.Web.Pages.Posts.PostModel
 @inject Microsoft.Extensions.Options.IOptions<SharpBlogX.Options.BlogOptions> BlogOptions
+@inject Microsoft.Extensions.Options.IOptions<SharpBlogX.Options.WalineOptions> WalineOptions
 @{
     var post = Model.Post.Result;
     ViewData["Title"] = $"{post.Title} - ";
@@ -61,6 +62,10 @@
             <a class="next" rel="next" href="/post/@post.Next.Url">@post.Next.Title</a>
         }
     </section>
+    @if(WalineOptions.Value.IsEnabled)
+    {
+        <div id="waline"></div>
+    }
 </article>
 @section styles{
     <link href="https://cdn.jsdelivr.net/npm/vditor@3.4.7/dist/index.css" rel="stylesheet" />
@@ -70,4 +75,15 @@
     <script src="https://cdn.jsdelivr.net/npm/vditor@3.4.7/dist/index.min.js"></script>
     <script src="@BlogOptions.Value.StaticUrl/js/prism.js"></script>
     @* <script src="_framework/blazor.server.js"></script> *@
+    @if(WalineOptions.Value.IsEnabled)
+    {
+        <script src="//cdn.jsdelivr.net/npm/@@waline/client/dist/Waline.min.js"></script>
+        <script>
+            new Waline({
+                el: '#waline',
+                path: location.pathname,
+                serverURL: '@WalineOptions.Value.ServerUrl',
+            });
+        </script>
+    }
 }

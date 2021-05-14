@@ -15,6 +15,12 @@
         public BlogOptions Blog { get; set; }
 
         /// <summary>
+        /// Waline
+        /// </summary>
+        /// <value></value>
+        public WalineOptions Waline { get; set; }
+
+        /// <summary>
         /// Notification
         /// </summary>
         /// <value></value>

@@ -16,6 +16,7 @@ namespace SharpBlogX
 
             var https = new HttpsOptions();
             var blog = new BlogOptions();
+            var waline = new WalineOptions();
             var notification = new NotificationOptions();
             var swagger = new SwaggerOptions();
             var storage = new StorageOptions();
@@ -49,6 +50,17 @@ namespace SharpBlogX
                 options.AdminUrl = blogOption.GetValue<string>(nameof(options.AdminUrl));
 
                 blog = options;
+            });
+
+            PreConfigure<WalineOptions>(options => 
+            {
+                var walineOption = configuration.GetSection("waline");
+                Configure<WalineOptions>(walineOption);
+
+                options.IsEnabled = walineOption.GetValue<bool>(nameof(options.IsEnabled));
+                options.ServerUrl = walineOption.GetValue<string>(nameof(options.ServerUrl));
+
+                waline = options;
             });
 
             PreConfigure<NotificationOptions>(options => 
@@ -204,6 +216,7 @@ namespace SharpBlogX
             {
                 options.Https = https;
                 options.Blog = blog;
+                options.Waline = waline;
                 options.Swagger = swagger;
                 options.Storage = storage;
                 options.Cors = cors;
@@ -212,16 +225,7 @@ namespace SharpBlogX
                 options.TencentCloud = tencentCloud;
                 options.Authorize = authorize;
 
-                Configure<AppOptions>(item =>
-                {
-                    item.Swagger = swagger;
-                    item.Storage = storage;
-                    item.Cors = cors;
-                    item.Jwt = jwt;
-                    item.Worker = worker;
-                    item.TencentCloud = tencentCloud;
-                    item.Authorize = authorize;
-                });
+                Configure<AppOptions>(item => item = options);
             });
         }
 
@@ -229,6 +233,7 @@ namespace SharpBlogX
         {
             context.Services.ExecutePreConfiguredActions<HttpsOptions>();
             context.Services.ExecutePreConfiguredActions<BlogOptions>();
+            context.Services.ExecutePreConfiguredActions<WalineOptions>();
             context.Services.ExecutePreConfiguredActions<NotificationOptions>();
             context.Services.ExecutePreConfiguredActions<SwaggerOptions>();
             context.Services.ExecutePreConfiguredActions<StorageOptions>();

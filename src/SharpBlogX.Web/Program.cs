@@ -93,6 +93,9 @@ namespace SharpBlogX.Web
                     blog.Title = blogOption.GetValue<string>(nameof(BlogOptions.Title));
                     services.Configure<BlogOptions>(blogOption);
 
+                    var walineOption = hostingContext.Configuration.GetSection("waline");
+                    services.Configure<WalineOptions>(walineOption);
+
                     services.Configure<KestrelServerOptions>(options => 
                     {
                         IPAddress address = null;

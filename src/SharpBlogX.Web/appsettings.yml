@@ -13,3 +13,7 @@ blog:
   adminUrl: 'https://localhost:44382'
   githubUrl: 'https://github.com/cnsimo'
   telegramUrl: 'https://t.me/reinj3ct'
+
+waline:
+  isEnabled: false
+  serverUrl: 'https://localhost:44383'
