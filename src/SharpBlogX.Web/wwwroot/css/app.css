@@ -608,9 +608,9 @@ header label {
     padding: 1rem 0 1rem;
     justify-content: space-between;
 }
-.post-nav:before, .post-nav:after {
-    display: table;
-    content:" ";
+.post-nav {
+    display: flex;
+    justify-content: space-between;
 }
 .post-nav a.prev, .post-nav a.next {
     font-weight: 600;
