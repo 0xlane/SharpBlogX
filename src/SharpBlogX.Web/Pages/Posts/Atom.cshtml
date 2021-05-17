@@ -1,0 +1,7 @@
+@page "/atom.xml"
+@model SharpBlogX.Web.Pages.Posts.AtomModel
+@{
+    Layout = null;
+    this.Response.ContentType = "text/xml";
+    await this.Response.Body.WriteAsync(System.Text.Encoding.UTF8.GetBytes(Model.Feed.Result));
+}

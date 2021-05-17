@@ -26,6 +26,8 @@
 
             public static string GetPostsByTag(string tag) => $"{CachePrefix.Blog_Post}:GetByTag-{tag}";
 
+            public static string GetPostFeed() => $"{CachePrefix.Blog_Post}:Feed";
+
             public static string GetCategories() => $"{CachePrefix.Blog_Category}:Get";
 
             public static string GetTags() => $"{CachePrefix.Blog_Tag}:Get";

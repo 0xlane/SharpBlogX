@@ -2,6 +2,7 @@
 using SharpBlogX.Response;
 using System;
 using System.Collections.Generic;
+using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 
 namespace SharpBlogX.Caching.Blog
@@ -24,6 +25,13 @@ namespace SharpBlogX.Caching.Blog
         /// <param name="func"></param>
         /// <returns></returns>
         Task<BlogResponse<PagedList<GetPostDto>>> GetPostsAsync(int page, int limit, Func<Task<BlogResponse<PagedList<GetPostDto>>>> func);
+
+        /// <summary>
+        /// Get the feed of posts.
+        /// </summary>
+        /// <param name="func"></param>
+        /// <returns></returns>
+        Task<BlogResponse<string>> GetPostFeedAsync(Func<Task<BlogResponse<string>>> func);
 
         /// <summary>
         /// Get the list of posts by category from the cache.

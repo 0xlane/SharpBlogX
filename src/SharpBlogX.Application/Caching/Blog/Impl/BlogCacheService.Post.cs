@@ -2,6 +2,7 @@
 using SharpBlogX.Response;
 using System;
 using System.Collections.Generic;
+using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 
 namespace SharpBlogX.Caching.Blog.Impl
@@ -11,6 +12,8 @@ namespace SharpBlogX.Caching.Blog.Impl
         public async Task<BlogResponse<PostDetailDto>> GetPostByUrlAsync(string url, Func<Task<BlogResponse<PostDetailDto>>> func) => await Cache.GetOrAddAsync(CachingConsts.CacheKeys.GetPostByUrl(url), func, CachingConsts.CacheStrategy.HALF_DAY);
 
         public async Task<BlogResponse<PagedList<GetPostDto>>> GetPostsAsync(int page, int limit, Func<Task<BlogResponse<PagedList<GetPostDto>>>> func) => await Cache.GetOrAddAsync(CachingConsts.CacheKeys.GetPosts(page, limit), func, CachingConsts.CacheStrategy.HALF_DAY);
+
+        public async Task<BlogResponse<string>> GetPostFeedAsync(Func<Task<BlogResponse<string>>> func) => await Cache.GetOrAddAsync(CachingConsts.CacheKeys.GetPostFeed(), func, CachingConsts.CacheStrategy.NEVER);
 
         public async Task<BlogResponse<List<GetPostDto>>> GetPostsByCategoryAsync(string category, Func<Task<BlogResponse<List<GetPostDto>>>> func) => await Cache.GetOrAddAsync(CachingConsts.CacheKeys.GetPostsByCategory(category), func, CachingConsts.CacheStrategy.HALF_DAY);
 

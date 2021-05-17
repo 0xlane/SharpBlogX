@@ -4,6 +4,8 @@ using SharpBlogX.Response;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
+using SharpBlogX.Options;
 
 namespace SharpBlogX.Blog.Impl
 {
@@ -14,18 +16,21 @@ namespace SharpBlogX.Blog.Impl
         private readonly ITagRepository _tags;
         private readonly IFriendLinkRepository _friendLinks;
         private readonly IBlogCacheService _cache;
+        private readonly IOptions<BlogOptions> _blog;
 
         public BlogService(IPostRepository posts,
                            ICategoryRepository categories,
                            ITagRepository tags,
                            IFriendLinkRepository friendLinks,
-                           IBlogCacheService cache)
+                           IBlogCacheService cache,
+                           IOptions<BlogOptions> blog)
         {
             _posts = posts;
             _categories = categories;
             _tags = tags;
             _friendLinks = friendLinks;
             _cache = cache;
+            _blog = blog;
         }
 
         /// <summary>

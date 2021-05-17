@@ -6,6 +6,7 @@ https:
   privateCertFile: 'sharpblog-dev-private.pfx'
 
 blog:
+  title: 'SharpBlog'
   staticUrl: 'https://static.sharpblog.cn'
   apiUrl: 'https://api.sharpblog.cn'
   webUrl: 'https://sharpblog.cn'

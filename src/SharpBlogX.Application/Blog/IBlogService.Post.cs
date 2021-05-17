@@ -14,5 +14,7 @@ namespace SharpBlogX.Blog
         Task<BlogResponse<List<GetPostDto>>> GetPostsByCategoryAsync(string category);
 
         Task<BlogResponse<List<GetPostDto>>> GetPostsByTagAsync(string tag);
+        
+        Task<BlogResponse<string>> GetRssAsync();
     }
 }

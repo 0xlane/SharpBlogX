@@ -26,6 +26,7 @@ namespace SharpBlogX.Repositories.Blog
                 { "author", 1 },
                 { "category", 1 },
                 { "tags", 1 },
+                { "markdown", 1 },
                 { "createdAt", 1 }
             };
 

@@ -6,6 +6,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ServiceModel.Syndication;
+using System;
+using System.Text;
+using System.Xml;
+using SharpBlogX.Extensions;
 
 namespace SharpBlogX.Blog.Impl
 {
@@ -120,6 +125,69 @@ namespace SharpBlogX.Blog.Impl
                 var posts = await _posts.GetListByTagAsync(tag);
 
                 response.IsSuccess(GetPostList(posts), entity.Name);
+                return response;
+            });
+        }
+
+        /// <summary>
+        /// Get feed of posts.
+        /// </summary>
+        /// <returns></returns>
+        [Route("api/blog/posts/feed")]
+        public async Task<BlogResponse<string>> GetRssAsync()
+        {
+            return await _cache.GetPostFeedAsync(async () =>
+            {
+                var response = new BlogResponse<string>();
+                var result = await _posts.GetPagedListAsync(1, 10);
+                var total = result.Item1;
+                var posts = result.Item2;
+                var feed = new SyndicationFeed(_blog.Value.Title, "SharpBlog", new Uri($"{_blog.Value.WebUrl}/atom.xml"), _blog.Value.WebUrl, DateTime.Now);
+
+                if (total > 0)
+                {
+                    feed = new SyndicationFeed(_blog.Value.Title, "SharpBlog", new Uri("/atom.xml"), _blog.Value.WebUrl, new DateTimeOffset(posts.FirstOrDefault().CreatedAt));
+                }
+
+                feed.Items = posts.Select(x =>
+                {
+                    var content = SyndicationContent.CreateHtmlContent(x.Markdown.ToPreviewHtml());
+                    var item = new SyndicationItem()
+                    {
+                        Id = $"{_blog.Value.WebUrl}/post/{x.Url}",
+                        Title = SyndicationContent.CreatePlaintextContent(x.Title),
+                        Summary = content,
+                        Content = content,
+                        LastUpdatedTime = new DateTimeOffset(x.CreatedAt),
+                        PublishDate = new DateTimeOffset(x.CreatedAt)
+                    };
+                    item.Links.Add(SyndicationLink.CreateAlternateLink(new Uri($"{_blog.Value.WebUrl}/post/{x.Url}")));
+                    item.Authors.Add(new SyndicationPerson(x.Author));
+                    item.Categories.Add(new SyndicationCategory(x.Category.Name));
+                    return item;
+                }).ToList();
+
+                feed.Links.Add(SyndicationLink.CreateSelfLink(new Uri(_blog.Value.WebUrl), "application/atom+xml; charset=utf-8"));
+                feed.Authors.Add(new SyndicationPerson(_blog.Value.Title));
+                feed.Copyright = new TextSyndicationContent($"© {DateTime.Now.Year} - {_blog.Value.Title}");
+
+                var settings = new XmlWriterSettings
+                {
+                    Encoding = Encoding.UTF8,
+                    NewLineHandling = NewLineHandling.Entitize,
+                    NewLineOnAttributes = true,
+                    Indent = true
+                };
+
+                var xmlString = new StringBuilder();
+                using (var xmlWriter = XmlWriter.Create(xmlString, settings))
+                {
+                    var rssFormatter = new Atom10FeedFormatter(feed);
+                    rssFormatter.WriteTo(xmlWriter);
+                    xmlWriter.Flush();
+                }
+                
+                response.Result = xmlString.ToString();
                 return response;
             });
         }
