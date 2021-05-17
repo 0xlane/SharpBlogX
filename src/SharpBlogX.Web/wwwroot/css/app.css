@@ -316,6 +316,9 @@ input[type="radio"]:checked + label:after, input[type="radio"]:not(:checked) + l
 .iconnotes:before {
     content:"\e687";
 }
+.iconrss:before {
+    content: "\e778";
+}
 .header-logo a {
     padding: 0;
 }
