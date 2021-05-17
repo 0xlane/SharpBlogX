@@ -45,42 +45,6 @@ namespace SharpBlogX.Tools.Impl
         }
 
         /// <summary>
-        /// Get bing background url.
-        /// </summary>
-        /// <returns></returns>
-        [Route("api/tool/bing/url")]
-        public async Task<BlogResponse<string>> GetBingBackgroundUrlAsync()
-        {
-            var response = new BlogResponse<string>();
-
-            var api = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&pid=hp&FORM=BEHPTB";
-
-            using var client = _httpClient.CreateClient();
-            var json = await client.GetStringAsync(api);
-
-            var obj = JObject.Parse(json);
-            var url = $"https://cn.bing.com{obj["images"].First()["url"]}";
-
-            response.Result = url;
-            return response;
-        }
-
-        /// <summary>
-        /// Get bing background image.
-        /// </summary>
-        /// <returns></returns>
-        [Route("api/tool/bing/img")]
-        public async Task<FileContentResult> GetBingBackgroundImgAsync()
-        {
-            var url = (await GetBingBackgroundUrlAsync()).Result;
-
-            using var client = _httpClient.CreateClient();
-            var bytes = await client.GetByteArrayAsync(url);
-
-            return new FileContentResult(bytes, "image/jpeg");
-        }
-
-        /// <summary>
         /// Get the region by ip address.
         /// </summary>
         /// <param name="ip"></param>
@@ -124,7 +88,6 @@ namespace SharpBlogX.Tools.Impl
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [Route("api/tool/send")]
         public async Task<BlogResponse> SendMessageAsync(SendMessageInput input)
         {
             var response = new BlogResponse();
@@ -137,20 +100,6 @@ namespace SharpBlogX.Tools.Impl
             await client.PostAsync(_notificationOptions.FtqqUrl, content);
 
             return response;
-        }
-
-        /// <summary>
-        /// Get img by url
-        /// </summary>
-        /// <param name="url"></param>
-        /// <returns></returns>
-        [Route("api/tool/img")]
-        public async Task<FileContentResult> GetImgAsync([Required] string url)
-        {
-            using var client = _httpClient.CreateClient();
-            var bytes = await client.GetByteArrayAsync(url);
-
-            return new FileContentResult(bytes, "image/jpeg");
         }
 
         /// <summary>
