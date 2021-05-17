@@ -575,6 +575,7 @@ header label {
     padding-top: 2rem !important;
     text-align: justify !important;
     font-size: 16px;
+    word-break: break-all;
 }
 .post-copyright {
     margin-top: 2rem;
