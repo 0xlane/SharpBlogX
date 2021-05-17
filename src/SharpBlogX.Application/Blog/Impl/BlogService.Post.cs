@@ -146,7 +146,7 @@ namespace SharpBlogX.Blog.Impl
 
                 if (total > 0)
                 {
-                    feed = new SyndicationFeed(_blog.Value.Title, "SharpBlog", new Uri("/atom.xml"), _blog.Value.WebUrl, new DateTimeOffset(posts.FirstOrDefault().CreatedAt));
+                    feed = new SyndicationFeed(_blog.Value.Title, "SharpBlog", new Uri("{_blog.Value.WebUrl}/atom.xml"), _blog.Value.WebUrl, new DateTimeOffset(posts.FirstOrDefault().CreatedAt));
                 }
 
                 feed.Items = posts.Select(x =>
@@ -162,13 +162,19 @@ namespace SharpBlogX.Blog.Impl
                         PublishDate = new DateTimeOffset(x.CreatedAt)
                     };
                     item.Links.Add(SyndicationLink.CreateAlternateLink(new Uri($"{_blog.Value.WebUrl}/post/{x.Url}")));
-                    item.Authors.Add(new SyndicationPerson(x.Author));
+                    item.Authors.Add(new SyndicationPerson()
+                    {
+                        Name = x.Author
+                    });
                     item.Categories.Add(new SyndicationCategory(x.Category.Name));
                     return item;
                 }).ToList();
 
                 feed.Links.Add(SyndicationLink.CreateSelfLink(new Uri(_blog.Value.WebUrl), "application/atom+xml; charset=utf-8"));
-                feed.Authors.Add(new SyndicationPerson(_blog.Value.Title));
+                feed.Authors.Add(new SyndicationPerson()
+                {
+                    Name = _blog.Value.Title
+                });
                 feed.Copyright = new TextSyndicationContent($"© {DateTime.Now.Year} - {_blog.Value.Title}");
 
                 var settings = new XmlWriterSettings
