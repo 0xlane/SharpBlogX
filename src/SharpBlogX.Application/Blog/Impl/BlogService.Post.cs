@@ -146,7 +146,7 @@ namespace SharpBlogX.Blog.Impl
 
                 if (total > 0)
                 {
-                    feed = new SyndicationFeed(_blog.Value.Title, "SharpBlog", new Uri("{_blog.Value.WebUrl}/atom.xml"), _blog.Value.WebUrl, new DateTimeOffset(posts.FirstOrDefault().CreatedAt));
+                    feed = new SyndicationFeed(_blog.Value.Title, "SharpBlog", new Uri($"{_blog.Value.WebUrl}/atom.xml"), _blog.Value.WebUrl, new DateTimeOffset(posts.FirstOrDefault().CreatedAt));
                 }
 
                 feed.Items = posts.Select(x =>
