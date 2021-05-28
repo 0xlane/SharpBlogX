@@ -36,7 +36,7 @@ namespace SharpBlogX.Admin.Pages.Posts
 
         public void Goto(string id)
         {
-            NavigationManager.NavigateTo($"/posts/edit/{id}");
+            NavigationManager.NavigateTo($"posts/edit/{id}");
         }
 
         public async Task DeleteAsync(string id)

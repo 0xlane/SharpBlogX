@@ -24,7 +24,7 @@ namespace SharpBlogX.Admin.Pages.Categories
             if (response.Success)
             {
                 await Message.Success("Successful", 0.5);
-                NavigationManager.NavigateTo("/categories/list");
+                NavigationManager.NavigateTo("categories/list");
             }
             else
             {

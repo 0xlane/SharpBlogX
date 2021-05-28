@@ -24,7 +24,7 @@ namespace SharpBlogX.Admin.Pages.FriendLinks
             if (response.Success)
             {
                 await Message.Success("Successful", 0.5);
-                NavigationManager.NavigateTo("/friendlinks/list");
+                NavigationManager.NavigateTo("friendlinks/list");
             }
             else
             {

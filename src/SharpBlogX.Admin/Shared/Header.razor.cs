@@ -16,7 +16,7 @@ namespace SharpBlogX.Admin.Shared
             switch (item.Key)
             {
                 case "user":
-                    NavigationManager.NavigateTo("/users");
+                    NavigationManager.NavigateTo("users");
                     break;
                 case "logout":
                     {

@@ -39,7 +39,7 @@ namespace SharpBlogX.Admin.Pages.OAuth
                     var token = response.Result;
                     await Js.InvokeVoidAsync("localStorage.setItem", "token", token);
 
-                    NavigationManager.NavigateTo("/", true);
+                    NavigationManager.NavigateTo("", true);
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace SharpBlogX.Admin.Pages.OAuth
                         Message = response.Message,
                         Description = "Sorry, this account is not authorized, please contact administrator"
                     });
-                    NavigationManager.NavigateTo("/login", true);
+                    NavigationManager.NavigateTo("login", true);
                 }
             }
             else

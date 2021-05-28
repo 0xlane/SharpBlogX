@@ -70,7 +70,7 @@ namespace SharpBlogX.Admin.Services
             var json = await http.GetStringAsync($"/api/oauth/{type}");
             var response = JsonConvert.DeserializeObject<BlogResponse<string>>(json);
 
-            _navigationManager.NavigateTo(response.Success ? response.Result : "/login");
+            _navigationManager.NavigateTo(response.Success ? response.Result : "login");
         }
 
         public async Task<string> GetTokenAsync(LoginInput login)
@@ -110,7 +110,7 @@ namespace SharpBlogX.Admin.Services
 
         private AuthenticationState GetNullState()
         {
-            _navigationManager.NavigateTo("/login");
+            _navigationManager.NavigateTo("login");
 
             var principal = new ClaimsPrincipal(new ClaimsIdentity());
             return new AuthenticationState(principal);

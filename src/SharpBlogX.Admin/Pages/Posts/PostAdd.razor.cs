@@ -106,7 +106,7 @@ namespace SharpBlogX.Admin.Pages.Posts
             if (response.Success)
             {
                 await Message.Success("Successful", 0.5);
-                NavigationManager.NavigateTo("/posts/list");
+                NavigationManager.NavigateTo("posts/list");
             }
             else
             {

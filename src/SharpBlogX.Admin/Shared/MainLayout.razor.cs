@@ -17,14 +17,14 @@ namespace SharpBlogX.Admin.Shared
                 {
                     Name = "Dashboard",
                     Key = "dashboard",
-                    Path = "/",
+                    Path = "",
                     Icon = "dashboard"
                 },
                 new MenuDataItem
                 {
                     Name = "文章管理",
                     Key = "posts",
-                    Path = "/posts",
+                    Path = "posts",
                     Icon = "read",
                     Children = new MenuDataItem[]
                     {
@@ -32,14 +32,14 @@ namespace SharpBlogX.Admin.Shared
                         {
                             Name = "文章列表",
                             Key = "posts-list",
-                            Path = "/posts/list",
+                            Path = "posts/list",
                             Icon = "bars"
                         },
                         new MenuDataItem
                         {
                             Name = "新增文章",
                             Key = "posts-add",
-                            Path = "/posts/add",
+                            Path = "posts/add",
                             Icon = "plus-square"
                         }
                     }
@@ -48,7 +48,7 @@ namespace SharpBlogX.Admin.Shared
                 {
                     Name = "分类管理",
                     Key = "categories",
-                    Path = "/categories",
+                    Path = "categories",
                     Icon = "switcher",
                     Children = new MenuDataItem[]
                     {
@@ -56,14 +56,14 @@ namespace SharpBlogX.Admin.Shared
                         {
                             Name = "分类列表",
                             Key = "categories-list",
-                            Path = "/categories/list",
+                            Path = "categories/list",
                             Icon = "bars"
                         },
                         new MenuDataItem
                         {
                             Name = "新增分类",
                             Key = "categories-add",
-                            Path = "/categories/add",
+                            Path = "categories/add",
                             Icon = "plus-square"
                         }
                     }
@@ -72,7 +72,7 @@ namespace SharpBlogX.Admin.Shared
                 {
                     Name = "标签管理",
                     Key = "tags",
-                    Path = "/tags",
+                    Path = "tags",
                     Icon = "tags",
                     Children = new MenuDataItem[]
                     {
@@ -80,14 +80,14 @@ namespace SharpBlogX.Admin.Shared
                         {
                             Name = "标签列表",
                             Key = "tags-list",
-                            Path = "/tags/list",
+                            Path = "tags/list",
                             Icon = "bars"
                         },
                         new MenuDataItem
                         {
                             Name = "新增标签",
                             Key = "tags-add",
-                            Path = "/tags/add",
+                            Path = "tags/add",
                             Icon = "plus-square"
                         }
                     }
@@ -96,7 +96,7 @@ namespace SharpBlogX.Admin.Shared
                 {
                     Name = "友链管理",
                     Key = "friendlinks",
-                    Path = "/friendlinks",
+                    Path = "friendlinks",
                     Icon = "link",
                     Children = new MenuDataItem[]
                     {
@@ -104,14 +104,14 @@ namespace SharpBlogX.Admin.Shared
                         {
                             Name = "友链列表",
                             Key = "friendlinks-list",
-                            Path = "/friendlinks/list",
+                            Path = "friendlinks/list",
                             Icon = "bars"
                         },
                         new MenuDataItem
                         {
                             Name = "新增友链",
                             Key = "friendlinks-add",
-                            Path = "/friendlinks/add",
+                            Path = "friendlinks/add",
                             Icon = "plus-square"
                         }
                     }
@@ -120,14 +120,14 @@ namespace SharpBlogX.Admin.Shared
                 {
                     Name = "用户中心",
                     Key = "users",
-                    Path = "/users",
+                    Path = "users",
                     Icon = "user"
                 },
                 new MenuDataItem
                 {
                     Name = "工具箱",
                     Key = "tools",
-                    Path = "/tools",
+                    Path = "tools",
                     Icon = "tool",
                     Children = new MenuDataItem[]
                     {
@@ -135,14 +135,14 @@ namespace SharpBlogX.Admin.Shared
                         {
                             Name = "CDN刷新",
                             Key = "tools-cdn",
-                            Path = "/tools/cdn",
+                            Path = "tools/cdn",
                             Icon = "cloud"
                         },
                         new MenuDataItem
                         {
                             Name = "IP查询",
                             Key = "tools-ip",
-                            Path = "/tools/ip2region",
+                            Path = "tools/ip2region",
                             Icon = "node-index"
                         }
                     }
@@ -151,14 +151,14 @@ namespace SharpBlogX.Admin.Shared
                 {
                     Name = "留言板",
                     Key = "messages",
-                    Path = "/messages",
+                    Path = "messages",
                     Icon = "message"
                 },
                 new MenuDataItem
                 {
                     Name = "一句话",
                     Key = "sayings",
-                    Path = "/sayings",
+                    Path = "sayings",
                     Icon = "smile"
                 }
             };

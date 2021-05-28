@@ -4,7 +4,7 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
-    var basepath = new System.Uri(BlogOptions.Value.AdminUrl).PathAndQuery;
+    var basepath = new System.Uri(BlogOptions.Value.AdminUrl).PathAndQuery.Replace("/", "");
 }
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin - @BlogOptions.Value.Title⭐⭐⭐</title>
-    <base href="~/@basepath/" />
+    <base href="~/" />
     <link href="@BlogOptions.Value.StaticUrl/_content/AntDesign/css/ant-design-blazor.css" rel="stylesheet" />
     <link href="@BlogOptions.Value.StaticUrl/_content/AntDesign.Pro.Layout/css/ant-design-pro-layout-blazor.css" rel="stylesheet" />
     <link href="@BlogOptions.Value.StaticUrl/css/app.css" rel="stylesheet" />

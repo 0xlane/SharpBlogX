@@ -60,13 +60,13 @@ namespace SharpBlogX.Admin.Pages.OAuth
                     Description = $"Login is successful, welcome back.",
                     Duration = 0.5
                 });
-                NavigationManager.NavigateTo("/", true);
+                NavigationManager.NavigateTo("", true);
             }
         }
 
         public void HandleClick(string type)
         {
-            NavigationManager.NavigateTo($"/oauth/{type}");
+            NavigationManager.NavigateTo($"oauth/{type}");
         }
 
         public void OnChange(string activeKey)

@@ -24,7 +24,7 @@ namespace SharpBlogX.Admin.Pages.Tags
             if (response.Success)
             {
                 await Message.Success("Successful", 0.5);
-                NavigationManager.NavigateTo("/tags/list");
+                NavigationManager.NavigateTo("tags/list");
             }
             else
             {
