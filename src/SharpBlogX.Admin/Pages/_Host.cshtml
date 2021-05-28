@@ -4,6 +4,7 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
+    var basepath = new System.Uri(BlogOptions.Value.AdminUrl).PathAndQuery;
 }
 <!DOCTYPE html>
 <html>
@@ -11,17 +12,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin - @BlogOptions.Value.Title⭐⭐⭐</title>
-    <base href="/" />
-    <link href="@BlogOptions.Value.StaticUrl/_content/AntDesign/css/ant-design-blazor.css" rel="stylesheet" />
-    <link href="@BlogOptions.Value.StaticUrl/_content/AntDesign.Pro.Layout/css/ant-design-pro-layout-blazor.css" rel="stylesheet" />
+    <base href="@basepath" />
+    <link href="_content/AntDesign/css/ant-design-blazor.css" rel="stylesheet" />
+    <link href="_content/AntDesign.Pro.Layout/css/ant-design-pro-layout-blazor.css" rel="stylesheet" />
     <link href="@BlogOptions.Value.StaticUrl/css/app.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/vditor@3.8.4/dist/index.css" rel="stylesheet" />
 </head>
 <body>
     <component type="typeof(App)" render-mode="Server" />
-    <script src="@BlogOptions.Value.StaticUrl/_content/AntDesign/js/ant-design-blazor.js"></script>
+    <script src="_content/AntDesign/js/ant-design-blazor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vditor@3.8.4/dist/index.min.js" defer></script>
-    <script src="@BlogOptions.Value.StaticUrl/_content/Vditor/vditor-blazor.js"></script>
-    <script src="@BlogOptions.Value.StaticUrl/_framework/blazor.server.js"></script>
+    <script src="_content/Vditor/vditor-blazor.js"></script>
+    <script src="_framework/blazor.server.js"></script>
 </body>
 </html>
