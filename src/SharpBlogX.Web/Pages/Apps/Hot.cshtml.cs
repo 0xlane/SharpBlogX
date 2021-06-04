@@ -13,19 +13,19 @@ namespace SharpBlogX.Web.Pages.Apps
         {
         }
 
-        public string Id { get; set; }
+        public string Source { get; set; }
 
         public BlogResponse<List<HotSourceDto>> HotSources { get; set; }
 
         public BlogResponse<HotDto> Hot { get; set; }
 
-        public async Task OnGetAsync(string id)
+        public async Task OnGetAsync(string source)
         {
             HotSources = await GetResultAsync<BlogResponse<List<HotSourceDto>>>("api/hots/source");
 
-            Id = string.IsNullOrEmpty(id) ? HotSources.Result.FirstOrDefault().Id : id;
+            Source = string.IsNullOrEmpty(source) ? HotSources.Result.FirstOrDefault().Source : source;
 
-            Hot = await GetResultAsync<BlogResponse<HotDto>>($"api/hots/{Id}");
+            Hot = await GetResultAsync<BlogResponse<HotDto>>($"api/hots/{Source}");
         }
     }
 }

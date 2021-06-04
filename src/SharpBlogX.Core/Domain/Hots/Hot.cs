@@ -76,6 +76,12 @@ namespace SharpBlogX.Domain.Hots
             public const string gaoloumi = "高楼迷";
 
             public const string github = "GitHub";
+            
+            public const string ifanr = "爱范儿";
+
+            public const string anquanke = "安全客";
+
+            public const string freebuf = "FreeBuf";
 
             public static Dictionary<string, string> Dictionary { get; set; } = new Dictionary<string, string>
             {
@@ -108,7 +114,10 @@ namespace SharpBlogX.Domain.Hots
                 { douyin, "https://www.iesdouyin.com/web/api/v2/hotsearch/billboard/aweme" },
                 { kaiyan, "https://baobab.kaiyanapp.com/api/v1/feed?udid=3e7ee30c6fc0004a773dc33b0597b5732b145c04" },
                 { gaoloumi, "http://gaoloumi.cc/misc.php?mod=ranklist&type=thread&view=heats&orderby=today" },
-                { github, "https://github.com/trending/c%23?since=daily" }
+                { github, "https://github.com/trending/c%23?since=daily" },
+                { ifanr, "https://sso.ifanr.com//api/v5/wp/web-feed/?limit=20"},
+                { anquanke, "https://api.anquanke.com/data/v1/posts?size=30&page=1"},
+                { freebuf, "https://www.freebuf.com/fapi/frontend/home/article?page=1&limit=30&type=1&day=7&category=%E7%B2%BE%E9%80%89"}
             };
         }
     }

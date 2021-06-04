@@ -45,7 +45,7 @@ namespace SharpBlogX.Hots.Impl
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Route("api/hots/{id}")]
+        [Route("api/v1/hots/{id}")]
         public async Task<BlogResponse<HotDto>> GetHotsAsync(string id)
         {
             return await _cache.GetHotsAsync(id, async () =>
@@ -53,6 +53,32 @@ namespace SharpBlogX.Hots.Impl
                 var response = new BlogResponse<HotDto>();
 
                 var hot = await _hots.GetAsync(id.ToObjectId());
+                if (hot is null)
+                {
+                    response.IsFailed($"The hot id not exists.");
+                    return response;
+                }
+
+                var result = ObjectMapper.Map<Hot, HotDto>(hot);
+
+                response.Result = result;
+                return response;
+            });
+        }
+
+        /// <summary>
+        /// Get the list of hot news by source name.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        [Route("api/hots/{source}")]
+        public async Task<BlogResponse<HotDto>> GetHotsBySourceAsync(string source)
+        {
+            return await _cache.GetHotsBySourceAsync(source, async () =>
+            {
+                var response = new BlogResponse<HotDto>();
+
+                var hot = await _hots.FindAsync(x => x.Source == source);
                 if (hot is null)
                 {
                     response.IsFailed($"The hot id not exists.");

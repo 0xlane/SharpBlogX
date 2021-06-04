@@ -77,7 +77,9 @@ namespace SharpBlogX.Workers
                     {
                         switch (source)
                         {
-                            case Hot.KnownSources.v2ex or Hot.KnownSources.juejin or Hot.KnownSources.csdn or Hot.KnownSources.zhihu or Hot.KnownSources.huxiu or Hot.KnownSources.douyin or Hot.KnownSources.woshipm or Hot.KnownSources.kaiyan:
+                            case Hot.KnownSources.v2ex or Hot.KnownSources.juejin or Hot.KnownSources.csdn or Hot.KnownSources.zhihu or Hot.KnownSources.huxiu 
+                                    or Hot.KnownSources.douyin or Hot.KnownSources.woshipm or Hot.KnownSources.kaiyan or Hot.KnownSources.ifanr 
+                                    or Hot.KnownSources.anquanke or Hot.KnownSources.freebuf:
                                 {
                                     using var client = _httpClient.CreateClient("hot");
                                     client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.66");
@@ -706,11 +708,64 @@ namespace SharpBlogX.Workers
                                 await SaveAsync();
                                 break;
                             }
+                        
+                        case Hot.KnownSources.ifanr:
+                            {
+                                var json = result as string;
+                                var nodes = JObject.Parse(json)["objects"];
+
+                                foreach (var node in nodes)
+                                {
+                                    hot.Datas.Add(new Data
+                                    {
+                                        Title = node["post_title"].ToString(),
+                                        Url = node["post_url"].ToString()
+                                    });
+                                }
+
+                                await SaveAsync();
+                                break;
+                            }
+                        case Hot.KnownSources.anquanke:
+                            {
+                                var json = result as string;
+                                var nodes = JObject.Parse(json)["data"];
+
+                                foreach (var node in nodes)
+                                {
+                                    hot.Datas.Add(new Data
+                                    {
+                                        Title = node["title"].ToString(),
+                                        Url = $"https://www.anquanke.com/post/id/{node["id"].ToString()}"
+                                    });
+                                }
+
+
+                                await SaveAsync();
+                                break;
+                            }
+                        case Hot.KnownSources.freebuf:
+                            {
+                                var json = result as string;
+                                var nodes = JObject.Parse(json)["data"]["list"];
+
+                                foreach (var node in nodes)
+                                {
+                                    hot.Datas.Add(new Data
+                                    {
+                                        Title = node["post_title"].ToString(),
+                                        Url = $"https://www.freebuf.com{node["url"].ToString()}"
+                                    });
+                                }
+
+                                await SaveAsync();
+                                break;
+                            }
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    Logger.LogError($"结果解析失败：{source}...");
+                    Logger.LogError($"结果解析失败：{source}..., {e.Message}");
                     return;
                 }
             });

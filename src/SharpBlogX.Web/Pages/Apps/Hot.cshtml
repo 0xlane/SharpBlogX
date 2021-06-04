@@ -1,4 +1,4 @@
-﻿@page "/hot/{id?}"
+﻿@page "/hot/{source?}"
 @model SharpBlogX.Web.Pages.Apps.HotModel
 @{ 
     ViewData["Title"] = "每日热点 - ";
@@ -8,7 +8,7 @@
         <div class="hot-nav">
             @foreach (var item in Model.HotSources.Result)
             {
-                <a class="@(item.Id == Model.Id ? "hot-active" : null)" href="/hot/@item.Id">@item.Source</a>
+                <a class="@(item.Source == Model.Source ? "hot-active" : null)" href="/hot/@item.Source">@item.Source</a>
             }
         </div>
         <div class="hot-content plus-row plus-col-space20">
