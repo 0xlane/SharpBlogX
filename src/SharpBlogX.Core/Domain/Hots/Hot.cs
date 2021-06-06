@@ -55,8 +55,6 @@ namespace SharpBlogX.Domain.Hots
 
             public const string sspai = "少数派";
 
-            public const string woshipm = "人人都是产品经理";
-
             public const string huxiu = "虎嗅网";
 
             public const string jandan = "煎蛋";
@@ -64,8 +62,6 @@ namespace SharpBlogX.Domain.Hots
             public const string pojie52 = "吾爱破解";
 
             public const string tianya = "天涯";
-
-            public const string lssdjt = "历史上的今天";
 
             public const string bilibili = "哔哩哔哩";
 
@@ -82,6 +78,10 @@ namespace SharpBlogX.Domain.Hots
             public const string anquanke = "安全客";
 
             public const string freebuf = "FreeBuf";
+
+            public const string xianzhi = "先知社区";
+
+            public const string pediy = "看雪";
 
             public static Dictionary<string, string> Dictionary { get; set; } = new Dictionary<string, string>
             {
@@ -104,20 +104,20 @@ namespace SharpBlogX.Domain.Hots
                 { zhihudaily, "https://daily.zhihu.com" },
                 { news163, "http://news.163.com/special/0001386F/rank_whole.html" },
                 { sspai, "https://sspai.com/tag/%E7%83%AD%E9%97%A8%E6%96%87%E7%AB%A0" },
-                { woshipm, "http://www.woshipm.com/__api/v1/browser/popular" },
                 { huxiu, "https://article-api.huxiu.com/web/index/articleList?platform=www" },
                 { jandan, "http://jandan.net/top" },
                 { pojie52, "https://www.52pojie.cn/misc.php?mod=ranklist&type=thread&view=heats&orderby=today" },
                 { tianya, "http://bbs.tianya.cn/list.jsp?item=free&grade=3&order=1" },
-                { lssdjt, "http://m.lssdjt.com" },
                 { bilibili, "https://www.bilibili.com/v/popular/rank/all" },
                 { douyin, "https://www.iesdouyin.com/web/api/v2/hotsearch/billboard/aweme" },
                 { kaiyan, "https://baobab.kaiyanapp.com/api/v1/feed?udid=3e7ee30c6fc0004a773dc33b0597b5732b145c04" },
                 { gaoloumi, "http://gaoloumi.cc/misc.php?mod=ranklist&type=thread&view=heats&orderby=today" },
                 { github, "https://github.com/trending/c%23?since=daily" },
-                { ifanr, "https://sso.ifanr.com//api/v5/wp/web-feed/?limit=20"},
-                { anquanke, "https://api.anquanke.com/data/v1/posts?size=30&page=1"},
-                { freebuf, "https://www.freebuf.com/fapi/frontend/home/article?page=1&limit=30&type=1&day=7&category=%E7%B2%BE%E9%80%89"}
+                { ifanr, "https://sso.ifanr.com//api/v5/wp/web-feed/?limit=20" },
+                { anquanke, "https://api.anquanke.com/data/v1/posts?size=30&page=1" },
+                { freebuf, "https://www.freebuf.com/fapi/frontend/home/article?page=1&limit=30&type=1&day=7&category=%E7%B2%BE%E9%80%89" },
+                { xianzhi, "https://xz.aliyun.com/" },
+                { pediy, "https://bbs.pediy.com/new-tid.htm" }
             };
         }
     }

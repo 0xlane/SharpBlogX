@@ -78,7 +78,7 @@ namespace SharpBlogX.Workers
                         switch (source)
                         {
                             case Hot.KnownSources.v2ex or Hot.KnownSources.juejin or Hot.KnownSources.csdn or Hot.KnownSources.zhihu or Hot.KnownSources.huxiu 
-                                    or Hot.KnownSources.douyin or Hot.KnownSources.woshipm or Hot.KnownSources.kaiyan or Hot.KnownSources.ifanr 
+                                    or Hot.KnownSources.douyin or Hot.KnownSources.kaiyan or Hot.KnownSources.ifanr 
                                     or Hot.KnownSources.anquanke or Hot.KnownSources.freebuf:
                                 {
                                     using var client = _httpClient.CreateClient("hot");
@@ -504,24 +504,6 @@ namespace SharpBlogX.Workers
                                 break;
                             }
 
-                        case Hot.KnownSources.woshipm:
-                            {
-                                var json = result as string;
-                                var nodes = JObject.Parse(json)["payload"];
-
-                                foreach (var node in nodes)
-                                {
-                                    hot.Datas.Add(new Data
-                                    {
-                                        Title = node["title"].ToString(),
-                                        Url = node["permalink"].ToString()
-                                    });
-                                }
-
-                                await SaveAsync();
-                                break;
-                            }
-
                         case Hot.KnownSources.huxiu:
                             {
                                 var json = result as string;
@@ -594,24 +576,6 @@ namespace SharpBlogX.Workers
                                     {
                                         Title = x.InnerText,
                                         Url = $"http://bbs.tianya.cn/{x.GetAttributeValue("href", "")}"
-                                    });
-                                });
-
-                                await SaveAsync();
-                                break;
-                            }
-
-                        case Hot.KnownSources.lssdjt:
-                            {
-                                var html = result as HtmlDocument;
-                                var nodes = html.DocumentNode.SelectNodes("//div[@class='list']/li/a").ToList();
-
-                                nodes.ForEach(x =>
-                                {
-                                    hot.Datas.Add(new Data
-                                    {
-                                        Title = x.InnerText,
-                                        Url = $"http://m.lssdjt.com{x.GetAttributeValue("href", "")}"
                                     });
                                 });
 
@@ -757,6 +721,40 @@ namespace SharpBlogX.Workers
                                         Url = $"https://www.freebuf.com{node["url"].ToString()}"
                                     });
                                 }
+
+                                await SaveAsync();
+                                break;
+                            }
+                        case Hot.KnownSources.xianzhi:
+                            {
+                                var html = result as HtmlDocument;
+                                var nodes = html.DocumentNode.SelectNodes("//a[@class='topic-title']").ToList();
+
+                                nodes.ForEach(x =>
+                                {
+                                    hot.Datas.Add(new Data
+                                    {
+                                        Title = x.InnerText,
+                                        Url = $"https://xz.aliyun.com{x.GetAttributeValue("href", string.Empty)}"
+                                    });
+                                });
+
+                                await SaveAsync();
+                                break;
+                            }
+                        case Hot.KnownSources.pediy:
+                            {
+                                var html = result as HtmlDocument;
+                                var nodes = html.DocumentNode.SelectNodes("//div[@class='subject']/a[2]").ToList();
+
+                                nodes.ForEach(x =>
+                                {
+                                    hot.Datas.Add(new Data
+                                    {
+                                        Title = x.InnerText,
+                                        Url = $"https://bbs.pediy.com/{x.GetAttributeValue("href", string.Empty)}"
+                                    });
+                                });
 
                                 await SaveAsync();
                                 break;
