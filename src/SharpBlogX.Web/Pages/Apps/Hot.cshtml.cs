@@ -23,6 +23,8 @@ namespace SharpBlogX.Web.Pages.Apps
         {
             HotSources = await GetResultAsync<BlogResponse<List<HotSourceDto>>>("api/hots/source");
 
+            HotSources.Result.Sort();
+
             Source = string.IsNullOrEmpty(source) ? HotSources.Result.FirstOrDefault().Source : source;
 
             Hot = await GetResultAsync<BlogResponse<HotDto>>($"api/hots/{Source}");
