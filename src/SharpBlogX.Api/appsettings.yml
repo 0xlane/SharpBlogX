@@ -39,7 +39,7 @@ jwt:
 
 worker:
   isEnabled: true
-  cron: '0 0 0/1 * * ? *'
+  cron: '0 0/1 * * * ? *'
 
 tencentCloud:
   secretId: 'AKIDlSrzZj0DXZKo0zslPnvmMfWdjYC6CG3d'

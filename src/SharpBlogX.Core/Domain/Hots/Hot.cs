@@ -79,8 +79,6 @@ namespace SharpBlogX.Domain.Hots
 
             public const string freebuf = "FreeBuf";
 
-            public const string xianzhi = "先知社区";
-
             public const string pediy = "看雪";
 
             public static Dictionary<string, string> Dictionary { get; set; } = new Dictionary<string, string>
@@ -116,7 +114,6 @@ namespace SharpBlogX.Domain.Hots
                 { ifanr, "https://sso.ifanr.com//api/v5/wp/web-feed/?limit=20" },
                 { anquanke, "https://api.anquanke.com/data/v1/posts?size=30&page=1" },
                 { freebuf, "https://www.freebuf.com/fapi/frontend/home/article?page=1&limit=30&type=1&day=7&category=%E7%B2%BE%E9%80%89" },
-                { xianzhi, "https://xz.aliyun.com/" },
                 { pediy, "https://bbs.pediy.com/new-tid.htm" }
             };
         }

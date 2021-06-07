@@ -61,7 +61,10 @@ namespace SharpBlogX.Workers
             var web = new HtmlWeb();
             web.PreRequest += delegate (HttpWebRequest request)
             {
+                request.Headers[HttpRequestHeader.UserAgent] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36";
+                request.Headers[HttpRequestHeader.AcceptEncoding] = "gzip, deflate, br";
                 request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+                request.CookieContainer = new System.Net.CookieContainer();
                 return true;
             };
 
@@ -725,23 +728,6 @@ namespace SharpBlogX.Workers
                                 await SaveAsync();
                                 break;
                             }
-                        case Hot.KnownSources.xianzhi:
-                            {
-                                var html = result as HtmlDocument;
-                                var nodes = html.DocumentNode.SelectNodes("//a[@class='topic-title']").ToList();
-
-                                nodes.ForEach(x =>
-                                {
-                                    hot.Datas.Add(new Data
-                                    {
-                                        Title = x.InnerText,
-                                        Url = $"https://xz.aliyun.com{x.GetAttributeValue("href", string.Empty)}"
-                                    });
-                                });
-
-                                await SaveAsync();
-                                break;
-                            }
                         case Hot.KnownSources.pediy:
                             {
                                 var html = result as HtmlDocument;
@@ -763,7 +749,7 @@ namespace SharpBlogX.Workers
                 }
                 catch (Exception e)
                 {
-                    Logger.LogError($"结果解析失败：{source}..., {e.Message}");
+                    Logger.LogError($"结果解析失败：{source}..., {e.Message}, {e.StackTrace}");
                     return;
                 }
             });
